@@ -15,21 +15,13 @@ export const metadata = {
 	description: 'Online Boking app',
 	icons: {
 		icon: '/favicon.ico',
-		shortcut: '/favicon-16x16.png',
-		apple: '/apple-touch-icon.png',
-		other: {
-			rel: 'apple-touch-icon-precomposed',
-			url: '/apple-touch-icon-precomposed.png',
-		},
 	},
-	manifest: '/site.webmanifest',
 };
 
 export const viewport = {
 	width: 'device-width',
 	initialScale: 1,
 	maximumScale: 1,
-	themeColor: '#fff',
 };
 
 export default async function RootLayout({
