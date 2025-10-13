@@ -1,31 +1,52 @@
-import type { Metadata } from 'next';
 import { Raleway } from 'next/font/google';
-import './globals.css';
+import { SessionProvider } from 'next-auth/react';
+import { auth } from '@/auth';
 import Navbar from '@/components/navbar/Navbar';
 import Footer from '@/components/Footer';
+import './globals.css';
 
 const raleway = Raleway({
-    variable: '--font-raleway',
-    subsets: ['latin'],
+	variable: '--font-raleway',
+	subsets: ['latin'],
 });
 
-export const metadata: Metadata = {
-    title: 'Home',
-    description: 'Online Hotel Booking',
+export const metadata = {
+	title: 'Booking Hotel',
+	description: 'Online Boking app',
+	icons: {
+		icon: '/favicon.ico',
+		shortcut: '/favicon-16x16.png',
+		apple: '/apple-touch-icon.png',
+		other: {
+			rel: 'apple-touch-icon-precomposed',
+			url: '/apple-touch-icon-precomposed.png',
+		},
+	},
+	manifest: '/site.webmanifest',
 };
 
-export default function RootLayout({
-    children,
+export const viewport = {
+	width: 'device-width',
+	initialScale: 1,
+	maximumScale: 1,
+	themeColor: '#fff',
+};
+
+export default async function RootLayout({
+	children,
 }: Readonly<{
-    children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
-    return (
-        <html lang='en'>
-            <body className={`${raleway.variable}  antialiased`}>
-                <Navbar />
-                <main className='bg-gray-50 min-h-screen'>{children}</main>
-                <Footer />
-            </body>
-        </html>
-    );
+	const session = await auth();
+	return (
+		<html lang='en'>
+			<body className={`${raleway.variable}  antialiased`}>
+				<SessionProvider session={session}>
+					<Navbar />
+					<main className='bg-gray-50 min-h-screen'>{children}</main>
+					<Footer />
+				</SessionProvider>
+			</body>
+		</html>
+	);
 }
