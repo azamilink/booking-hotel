@@ -1,8 +1,8 @@
 import { Raleway } from 'next/font/google';
 import { SessionProvider } from 'next-auth/react';
-import { auth } from '@/auth';
-import Navbar from '@/components/navbar/Navbar';
-import Footer from '@/components/Footer';
+import { auth } from '../auth';
+import Navbar from '../components/navbar/Navbar';
+import Footer from '../components/Footer';
 import './globals.css';
 
 const raleway = Raleway({
