@@ -2,13 +2,18 @@
   "name": "booking-hotel",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "scripts": {
+    "preinstall": "npx npm-force-resolutions || true",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "postinstall": "npm dedupe || true"
   },
-  "license": "MIT",
+  "engines": {
+    "node": ">=20 <21"
+  },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.0",
     "@prisma/client": "^6.17.1",
@@ -34,9 +39,6 @@
     "tailwindcss": "^4",
     "tsx": "^4.20.6",
     "typescript": "^5"
-  },
-  "engines": {
-    "node": ">=20 <21"
   },
   "overrides": {
     "@auth/core": "0.41.0"
