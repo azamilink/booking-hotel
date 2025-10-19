@@ -1,30 +1,66 @@
 {
   "compilerOptions": {
-    "target": "es2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    /* ✅ Output dan target modern */
+    "target": "ESNext",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    /* ✅ Umum untuk proyek Next.js */
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    // Alias path
+    /* ✅ Untuk stabilitas proyek besar */
+    "incremental": true,
+    "forceConsistentCasingInFileNames": true,
+    /* ✅ Path alias agar bisa import seperti "@/components/Button" */
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./*"
+      ]
     },
-    "incremental": true,
     "plugins": [
       {
         "name": "next"
       }
     ]
   },
-  "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  /* ✅ File/folder yang akan di-*compile* */
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "next-env.d.ts",
+    ".next/types/**/*.ts"
+  ],
+  /* 🚫 Folder yang akan diabaikan sepenuhnya */
+  "exclude": [
+    "node_modules",
+    ".next",
+    "out",
+    "dist",
+    "build",
+    "coverage",
+    "**/.git/**",
+    "**/.turbo/**",
+    /* 🚫 Folder sistem Windows yang bikin error EPERM */
+    "C:/Users/ASPIRE/Application Data",
+    "C:/Users/ASPIRE/AppData",
+    "C:/Windows",
+    "C:/ProgramData",
+    "C:/Program Files",
+    "C:/Program Files (x86)"
+  ],
+  /* ✅ TypeScript 6.0 baru: compiler options tambahan */
+  "ignoreDeprecations": "5.0",
+  "references": [],
+  "tsBuildInfoFile": ".tsbuildinfo"
 }
