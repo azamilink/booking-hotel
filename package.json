@@ -35,6 +35,9 @@
     "tsx": "^4.20.6",
     "typescript": "^5"
   },
+  "engines": {
+    "node": ">=20 <21"
+  },
   "overrides": {
     "@auth/core": "0.41.0"
   },
