@@ -1,13 +1,7 @@
 {
   "compilerOptions": {
-    /* ✅ Output dan target modern */
     "target": "ESNext",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    /* ✅ Umum untuk proyek Next.js */
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -18,15 +12,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    /* ✅ Untuk stabilitas proyek besar */
     "incremental": true,
     "forceConsistentCasingInFileNames": true,
-    /* ✅ Path alias agar bisa import seperti "@/components/Button" */
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["./*"]
     },
     "plugins": [
       {
@@ -34,14 +24,7 @@
       }
     ]
   },
-  /* ✅ File/folder yang akan di-*compile* */
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "next-env.d.ts",
-    ".next/types/**/*.ts"
-  ],
-  /* 🚫 Folder yang akan diabaikan sepenuhnya */
+  "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", ".next/types/**/*.ts"],
   "exclude": [
     "node_modules",
     ".next",
@@ -51,16 +34,11 @@
     "coverage",
     "**/.git/**",
     "**/.turbo/**",
-    /* 🚫 Folder sistem Windows yang bikin error EPERM */
     "C:/Users/ASPIRE/Application Data",
     "C:/Users/ASPIRE/AppData",
     "C:/Windows",
     "C:/ProgramData",
     "C:/Program Files",
     "C:/Program Files (x86)"
-  ],
-  /* ✅ TypeScript 6.0 baru: compiler options tambahan */
-  "ignoreDeprecations": "5.0",
-  "references": [],
-  "tsBuildInfoFile": ".tsbuildinfo"
+  ]
 }

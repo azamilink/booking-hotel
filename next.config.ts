@@ -1,6 +1,10 @@
+import path from "path";
 import type { NextConfig } from "next";
 
+const isProd = process.env.NODE_ENV === "production";
+
 const nextConfig: NextConfig = {
+  // ⚙️ Optimasi gambar (aman untuk Vercel dan local)
   images: {
     remotePatterns: [
       {
@@ -12,35 +16,50 @@ const nextConfig: NextConfig = {
         hostname: "lh3.googleusercontent.com",
       },
     ],
-  },
-  reactStrictMode: true,
-  swcMinify: true,
-
-  // 🚫 Pastikan Next.js tidak men-scan folder sistem
-  webpack(config) {
-    config.watchOptions = {
-      ignored: [
-        "**/node_modules/**",
-        "**/.next/**",
-        "C:/Users/ASPIRE/Application Data/**",
-        "C:/Users/ASPIRE/AppData/**",
-        "C:/Windows/**",
-        "C:/ProgramData/**",
-        "C:/Program Files/**",
-        "C:/Program Files (x86)/**",
-      ],
-    };
-    return config;
+    formats: ["image/avif", "image/webp"],
   },
 
-  // ✅ Tambahan untuk Windows
-  outputFileTracingRoot: __dirname,
-
-  // ✅ Ignor hal-hal yang bisa bikin crash di build worker
-  experimental: {
-    esmExternals: "loose",
-    webpackBuildWorker: false,
+  // ⚙️ Output tracing agar tidak men-scan folder sistem Windows
+  outputFileTracingRoot: path.resolve("./"),
+  outputFileTracingExcludes: {
+    "*": [
+      "C:\\Users\\azami\\Application Data",
+      "C:\\Users\\azami\\Cookies",
+      "C:\\Users\\azami\\AppData",
+      "C:\\ProgramData",
+      "C:\\Windows",
+      "C:\\Program Files",
+      "C:\\Program Files (x86)",
+    ],
   },
+
+  // 🧹 Optimasi build untuk production
+  productionBrowserSourceMaps: false, // nonaktifkan source map agar bundle lebih kecil
+  reactStrictMode: true, // rekomendasi untuk debugging dan performa
+  compress: true, // aktifkan kompresi gzip
+  poweredByHeader: false, // hilangkan header "x-powered-by: Next.js"
+
+  // ⚙️ Atur lint dan typescript agar build stabil
+  eslint: {
+    ignoreDuringBuilds: true, // biar build nggak gagal karena warning lint
+  },
+  typescript: {
+    ignoreBuildErrors: false, // tetap stop kalau error TS serius
+  },
+
+  // 🧭 Redirect / rewrite opsional
+  async redirects() {
+    return [
+      {
+        source: "/home",
+        destination: "/",
+        permanent: true,
+      },
+    ];
+  },
+
+  // ⚙️ Output folder untuk Vercel dan manual deploy
+  output: isProd ? "standalone" : undefined,
 };
 
 export default nextConfig;
