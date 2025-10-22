@@ -1,30 +1,70 @@
 {
   "compilerOptions": {
+    // 🎯 Target output ECMAScript modern (mendukung async/await, optional chaining, dll)
     "target": "ESNext",
+
+    // 🌐 Library bawaan yang digunakan
     "lib": ["dom", "dom.iterable", "esnext"],
+
+    // ✅ Izinkan file .js ikut dikompilasi (berguna kalau ada config JS)
     "allowJs": true,
+
+    // ⏩ Lewati pengecekan library di node_modules (lebih cepat)
     "skipLibCheck": true,
+
+    // 🧠 Gunakan strict mode untuk keamanan tipe maksimal
     "strict": true,
+
+    // 🚫 Jangan hasilkan file .js saat compile (Next.js yang handle build)
     "noEmit": true,
+
+    // 🔄 Izinkan import/export default dari modul CommonJS
     "esModuleInterop": true,
+
+    // ⚙️ Gunakan module ESNext (dibutuhkan Next.js 15)
     "module": "ESNext",
+
+    // 📦 Resolusi module modern (lebih cepat dan kompatibel dengan bundler Next.js)
     "moduleResolution": "Bundler",
+
+    // 📂 Izinkan import file .json
     "resolveJsonModule": true,
+
+    // 🧩 Setiap file diisolasi (aman untuk build incremental)
     "isolatedModules": true,
+
+    // 💅 JSX dibiarkan seperti apa adanya (Next.js yang akan proses JSX)
     "jsx": "preserve",
+
+    // 🚀 Aktifkan build incremental supaya TypeScript cache hasil compile
     "incremental": true,
+
+    // 🔠 Hindari error casing berbeda antar sistem file
     "forceConsistentCasingInFileNames": true,
+
+    // 🗺️ Base URL agar import bisa pakai alias (contoh: "@/components/Button")
     "baseUrl": ".",
+
+    // 🧭 Alias path custom — paling umum dipakai di project Next.js
     "paths": {
       "@/*": ["./*"]
     },
+
+    // 🔌 Plugin khusus Next.js (biar IDE & TypeScript paham tipe internal Next)
     "plugins": [
       {
         "name": "next"
       }
     ]
   },
+
+  // 📥 File/folder yang akan dicek oleh TypeScript
   "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", ".next/types/**/*.ts"],
+
+  // 🚫 Folder yang diabaikan supaya:
+  //   - Build lebih cepat
+  //   - Hindari error EPERM di Windows
+  //   - Tidak ikut membaca file sistem atau cache
   "exclude": [
     "node_modules",
     ".next",
@@ -34,11 +74,14 @@
     "coverage",
     "**/.git/**",
     "**/.turbo/**",
-    "C:/Users/ASPIRE/Application Data",
-    "C:/Users/ASPIRE/AppData",
+
+    // ⚠️ Cegah akses ke folder sistem Windows (penyebab utama EPERM)
+    "C:/Users/**",
     "C:/Windows",
     "C:/ProgramData",
     "C:/Program Files",
-    "C:/Program Files (x86)"
+    "C:/Program Files (x86)",
+    "**/Application Data/**",
+    "**/AppData/**"
   ]
 }
